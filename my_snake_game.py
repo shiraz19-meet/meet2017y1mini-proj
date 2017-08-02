@@ -48,15 +48,15 @@ for i in range(START_LENGTH):
 food=turtle.clone()
 food.shape('turtle')
 
-food_pos=[(100,100), (-100,100), (-100,-100), (100,-100)]
-food_stamps=[]
-
-for i in range(4):
-    x_pos=food_pos[i][0]
-    y_pos=food_pos[i][1]
-    food.goto(x_pos, y_pos)
-    b=food.stamp()
-    food_stamps.append(b)
+####################food_pos=[(100,100), (-100,100), (-100,-100), (100,-100)]
+####################food_stamps=[]
+####################
+####################for i in range(4):
+####################    x_pos=food_pos[i][0]
+####################    y_pos=food_pos[i][1]
+####################    food.goto(x_pos, y_pos)
+####################    b=food.stamp()
+####################    food_stamps.append(b)
 
 food.hideturtle()
 
@@ -127,6 +127,7 @@ def move_snake():
         food_pos.pop(food_ind)
         food_stamps.pop(food_ind)
         print('You have eaten the food!')
+        make_food()
         turtle.ontimer(move_snake,TIME_STEP)
 
 
@@ -156,8 +157,15 @@ move_snake()
 def make_food():
     min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
     max_x=int(SIZE_X/2/SQUARE_SIZE)-1
-    min_y=-int(SIZE_Y/2/SQUAR_SIZE)+1
+    min_y=-int(SIZE_Y/2/SQUARE_SIZE)-1
     max_y=int(SIZE_Y/2/SQUARE_SIZE)+1
     food_x= random.randint(min_x, max_x) *SQUARE_SIZE
     food_y= random.randint(min_y, max_y) *SQUARE_SIZE
     
+    food.goto(food_x, food_y)
+    c=(food_x, food_y)
+    food_pos.append(c)
+    xfoodx= food.stamp()
+    food_stamps.append(xfoodx)
+
+make_food()
