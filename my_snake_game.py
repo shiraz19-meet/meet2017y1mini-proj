@@ -26,7 +26,7 @@ RIGHT_ARROW='Right'
 TIME_STEP=100
 
 SPACEBAR='space'
-
+score=0
 UP=0
 LEFT=2
 DOWN=1
@@ -91,6 +91,7 @@ turtle.onkeypress(right, RIGHT_ARROW)
 turtle.listen()
 
 def move_snake():
+    global score
     my_pos= snake.pos()
     x_pos= my_pos[0]
     y_pos= my_pos[1]
@@ -117,7 +118,7 @@ def move_snake():
     if snake.pos() in pos_list[0:-1]:
         quit()
 
-
+    
     global food_stamps, food_pos
     if snake.pos() in food_pos:
         food_ind=food_pos.index(snake.pos())
@@ -132,13 +133,15 @@ def move_snake():
         pos_list.append(b)
         stamp_list.append(b)
 
-        c=0
-        for i in range(c):
-            
-            score=c
-            score= score + 1
-            score_list.append(score)
-            turtle.write('score =' +str(score))
+                
+        
+        turtle.clear()
+        score= score + 1
+        score_list.append(score)
+        turtle.goto(-SIZE_X/2+17, SIZE_Y/2-18
+                    )
+        turtle.write('score =' +str(score))
+        
 
     new_pos= snake.pos()
     new_x_pos=new_pos[0]
